@@ -1,0 +1,3 @@
+/Users/xiaoyingxiong/projects/ClionProjects/Justxm/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/xiaoyingxiong/projects/ClionProjects/Justxm/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/xiaoyingxiong/projects/ClionProjects/Justxm/cmake-build-debug/CMakeFiles/justxm.dir
