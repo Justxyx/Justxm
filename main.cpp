@@ -1,6 +1,8 @@
 #include <iostream>
+#include "log/Log.h"
+#include "test/LogTest.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    logTest::test01();
 }
+
