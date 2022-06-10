@@ -79,12 +79,27 @@ void xm::LogAppender::setMLevel(xm::LogLevel::Level mLevel) {
     m_level = mLevel;
 }
 
-void xm::StdoutLogAppender::log(shared_ptr<Logger> logger, xm::LogLevel::Level level, xm::LogEvent::ptr event) {
-    cout << " -- " << endl;
+void StdoutLogAppender::log(shared_ptr<Logger> logger,
+                                xm::LogLevel::Level level,
+                                xm::LogEvent::ptr event) {
+    if (level >= m_level){
+        m_formatter->format(cout, logger,level,event);
+    }
 }
 
-void xm::FileLogAppender::log(shared_ptr<Logger> logger, xm::LogLevel::Level level, xm::LogEvent::ptr event) {
-    cout << " -- " << endl;
+
+
+void FileLogAppender::log(shared_ptr<Logger> logger, xm::LogLevel::Level level, xm::LogEvent::ptr event) {
+    if (level >= m_level){
+        uint64_t now = event->getMTime();
+        if (now >= (m_lastTime + 3)){
+            reopen();
+            m_lastTime = now;
+        }
+        if (!m_formatter->format(m_filestream, logger,level,event)){
+            cout << "error" << endl;
+        }
+    }
 }
 
 xm::FileLogAppender::FileLogAppender(const string &mFilename) : m_filename(mFilename) {
@@ -96,7 +111,23 @@ xm::LogFormatter::LogFormatter(const string &mPattern) : m_pattern(mPattern) {
 }
 
 
+    string LogFormatter::format(shared_ptr<Logger> logger,
+                                LogLevel::Level level,
+                                LogEvent::ptr event) {
+        stringstream ss;
+        for (const auto &item : m_items)
+            item->format(ss,logger,level,event);
+        return ss.str();
+    }
 
+
+    ostream &LogFormatter::format(ostream &ofs,
+                                  shared_ptr<Logger> logger,
+                                  LogLevel::Level level, LogEvent::ptr event) {
+        for (const auto &item : m_items)
+            item->format(ofs,logger,level,event);
+        return ofs;
+    }
 
     void LogFormatter::init() {
         //str, format, type
@@ -215,9 +246,50 @@ const string &xm::LogFormatter::getMPattern() const {
 }
 
 bool xm::FileLogAppender::reopen() {
-    cout << "reopen" << endl;
-    return true;
+    if (m_filestream){
+        m_filestream.close();
+    }
+    return FSUtil::OpenForWrite(m_filestream,m_filename,ios::app);
 }
+
+Logger::Logger(const string &name) :m_name(name),m_level(LogLevel::DEBUG){
+        m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
+    }
+
+void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
+        if (level >= m_level){
+            auto self = shared_from_this();
+            if (!m_appenders.empty()){
+                for (const auto &item : m_appenders){
+                    item->log(self,level,event);
+                }
+            } else if (m_root){
+                m_root->log(level,event);
+            }
+        }
+    }
+
+    LogEvent::LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level
+            ,const char* file, int32_t line, uint32_t elapse
+            ,uint32_t thread_id, uint32_t fiber_id, uint64_t time
+            ,const std::string& thread_name)
+            :m_file(file)
+            ,m_line(line)
+            ,m_elapse(elapse)
+            ,m_threadId(thread_id)
+            ,m_fiberId(fiber_id)
+            ,m_time(time)
+            ,m_threadName(thread_name)
+            ,m_logger(logger)
+            ,m_level(level) {
+    }
+
+    void Logger::addAppender(LogAppender::ptr appender) {
+        if (!appender->getMFormatter()){
+            appender->setMFormatter(m_formatter);
+        }
+        m_appenders.push_back(appender);
+    }
 
 
 

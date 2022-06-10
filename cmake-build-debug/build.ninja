@@ -84,6 +84,12 @@ build CMakeFiles/justxm.dir/log/Log.cpp.o: CXX_COMPILER__justxm_Debug /Users/xia
   OBJECT_DIR = CMakeFiles/justxm.dir
   OBJECT_FILE_DIR = CMakeFiles/justxm.dir/log
 
+build CMakeFiles/justxm.dir/util/Util.cpp.o: CXX_COMPILER__justxm_Debug /Users/xiaoyingxiong/projects/ClionProjects/Justxm/util/Util.cpp || cmake_object_order_depends_target_justxm
+  DEP_FILE = CMakeFiles/justxm.dir/util/Util.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk -std=gnu++11
+  OBJECT_DIR = CMakeFiles/justxm.dir
+  OBJECT_FILE_DIR = CMakeFiles/justxm.dir/util
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target justxm
@@ -92,7 +98,7 @@ build CMakeFiles/justxm.dir/log/Log.cpp.o: CXX_COMPILER__justxm_Debug /Users/xia
 #############################################
 # Link the executable justxm
 
-build justxm: CXX_EXECUTABLE_LINKER__justxm_Debug CMakeFiles/justxm.dir/main.cpp.o CMakeFiles/justxm.dir/log/Log.cpp.o
+build justxm: CXX_EXECUTABLE_LINKER__justxm_Debug CMakeFiles/justxm.dir/main.cpp.o CMakeFiles/justxm.dir/log/Log.cpp.o CMakeFiles/justxm.dir/util/Util.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk
   OBJECT_DIR = CMakeFiles/justxm.dir
   POST_BUILD = :

@@ -10,7 +10,7 @@
 #include <list>
 #include <fstream>
 #include <vector>
-
+#include "../util/Util.h"
 using namespace std;
 
 namespace xm{
@@ -50,6 +50,12 @@ public:
     uint32_t getMTime() const {return m_time;}
     const char *getMFile() const {return m_file;}
     int32_t getMLine() const {return m_line;}
+
+    LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level
+            ,const char* file, int32_t line, uint32_t elapse
+            ,uint32_t thread_id, uint32_t fiber_id, uint64_t time
+            ,const std::string& thread_name);
+
 
 private:
     const char* m_file = nullptr;
@@ -95,6 +101,9 @@ public:
         *  默认格式 "%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"
         */
     LogFormatter(const string &mPattern);
+
+    string format(shared_ptr<Logger> logger,LogLevel::Level level, LogEvent::ptr event);
+    ostream& format(ostream &ofs,shared_ptr<Logger> logger,LogLevel::Level level, LogEvent::ptr event);
 
 public:
     class FormatItem{
@@ -200,7 +209,7 @@ private:
     string m_name;
     LogLevel::Level m_level;
     list<LogAppender::ptr> m_appenders;
-    LogFormatter::ptr m_formatter;
+    LogFormatter::ptr m_formatter;  // 默认foramtter
     Logger::ptr m_root;
 };
 

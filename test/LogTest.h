@@ -10,5 +10,19 @@ namespace logTest {
         xm::LogFormatter logFormatter("%d{%Y-%m-%d %H:%M:%S}%T%t%T%N%T%F%T[%p]%T[%c]%T%f:%l%T%m%n");
         logFormatter.init();
     }
+
+    void test02(){
+        xm::FileLogAppender fileLogAppender("/Users/xiaoyingxiong/projects/ClionProjects/Justxm/temp/a.txt");
+        fileLogAppender.reopen();
+    }
+
+    void test03(){
+        xm::Logger::ptr logger(new xm::Logger);
+        logger->addAppender(xm::LogAppender::ptr(new xm::StdoutLogAppender()));
+
+        xm::LogEvent::ptr event(new xm::LogEvent(logger,xm::LogLevel::DEBUG,"xxx",12,
+                                                       12,12,12,12,"xx"));
+        logger->log(xm::LogLevel::DEBUG,event);
+    }
 }
 #endif //JUSTXM_LOGTEST_H
