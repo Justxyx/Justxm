@@ -24,5 +24,17 @@ namespace logTest {
                                                        12,12,12,12,"xx"));
         logger->log(xm::LogLevel::DEBUG,event);
     }
+
+    void test04(){
+        xm::Logger::ptr logger(new xm::Logger);
+//        logger->setMLevel(xm::LogLevel::WARN);
+        xm::LogAppender::ptr std(new xm::StdoutLogAppender);
+        std->setMLevel(xm::LogLevel::WARN);
+        logger->addAppender(std);
+        logger->addAppender(xm::FileLogAppender::ptr(new xm::FileLogAppender("/Users/xiaoyingxiong/projects/ClionProjects/Justxm/a.txt")));
+        xm::LogEvent::ptr event(new xm::LogEvent(logger,xm::LogLevel::DEBUG,"zzz",12,
+                                                 12,12,12,12,"xx"));
+        logger->log(xm::LogLevel::DEBUG,event);
+    }
 }
 #endif //JUSTXM_LOGTEST_H

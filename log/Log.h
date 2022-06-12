@@ -128,6 +128,7 @@ private:
  */
 class LogAppender{
 public:
+    friend class Logger;
     typedef shared_ptr<LogAppender> ptr;
 
     virtual ~LogAppender(){};
@@ -202,6 +203,7 @@ public:
     void setMName(const string &mName);
 
     void setFormatter(LogFormatter::ptr formatter); // Formatter
+    void setFormatter(const string &formatter);
     const LogFormatter::ptr getFormatter ()const;
 
 

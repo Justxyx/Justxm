@@ -291,6 +291,47 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
         m_appenders.push_back(appender);
     }
 
+    void Logger::deleteAppender(LogAppender::ptr appender) {
+        for (auto i = m_appenders.begin(); i != m_appenders.end() ; ++i) {
+            if ( *i == appender) {
+                m_appenders.erase(i);
+                break;
+            }
+        }
+    }
+
+    void Logger::clearAppender(LogAppender::ptr appender) {
+        m_appenders.clear();
+    }
+
+    void Logger::setFormatter(LogFormatter::ptr formatter) {
+        for (const auto &item : m_appenders) {
+            if (!item->m_hasFormatter){  // appender 没有自己的formatter
+                item->m_formatter = formatter;
+            }
+        }
+    }
+
+    void Logger::setFormatter(const string &formatter) {
+        LogFormatter::ptr new_val(new LogFormatter(formatter));
+        if (new_val->isError()){
+            cout << "Logger setFormatter name = " << m_name <<
+            "formatter = " << formatter << " is invalid formatter" << endl;
+            return;
+        }
+        m_formatter = new_val;
+        setFormatter(new_val);
+    }
+
+    const LogFormatter::ptr Logger::getFormatter() const {
+        return m_formatter;
+    }
+
+    void Logger::debug(LogEvent::ptr event) { log(LogLevel::DEBUG,event);};
+    void Logger::info(LogEvent::ptr event) { log(LogLevel::INFO,event);};
+    void Logger::warn(LogEvent::ptr event) { log(LogLevel::WARN,event);};
+    void Logger::error(LogEvent::ptr event) { log(LogLevel::ERROR,event);};
+    void Logger::fatal(LogEvent::ptr event) { log(LogLevel::FATAL,event);};
 
 
 }
