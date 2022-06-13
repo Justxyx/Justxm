@@ -29,12 +29,16 @@ namespace logTest {
         xm::Logger::ptr logger(new xm::Logger);
 //        logger->setMLevel(xm::LogLevel::WARN);
         xm::LogAppender::ptr std(new xm::StdoutLogAppender);
-        std->setMLevel(xm::LogLevel::WARN);
+        std->setMLevel(xm::LogLevel::DEBUG);
         logger->addAppender(std);
         logger->addAppender(xm::FileLogAppender::ptr(new xm::FileLogAppender("/Users/xiaoyingxiong/projects/ClionProjects/Justxm/a.txt")));
         xm::LogEvent::ptr event(new xm::LogEvent(logger,xm::LogLevel::DEBUG,"zzz",12,
                                                  12,12,12,12,"xx"));
-        logger->log(xm::LogLevel::DEBUG,event);
+//        logger->log(xm::LogLevel::DEBUG,event);
+        if (event->getMSs())
+            cout << "he";
+
+        xm::LogEventWarp lo(event);
     }
 }
 #endif //JUSTXM_LOGTEST_H

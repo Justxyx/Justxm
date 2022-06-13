@@ -47,9 +47,14 @@ namespace xm{
 #undef XX
     }
 
+
 LogLevel::Level Logger::getMLevel() const {
     return m_level;
 }
+
+LogEventWarp::~LogEventWarp() {
+        m_event->getMLogger()->log(m_event->getMLevel(),m_event);
+    }
 
 void Logger::setMLevel(xm::LogLevel::Level mLevel) {
     m_level = mLevel;
@@ -284,6 +289,10 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
             ,m_level(level) {
     }
 
+    stringstream &LogEvent::getMSs()  {
+        return m_ss;
+    }
+
     void Logger::addAppender(LogAppender::ptr appender) {
         if (!appender->getMFormatter()){
             appender->setMFormatter(m_formatter);
@@ -333,5 +342,35 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
     void Logger::error(LogEvent::ptr event) { log(LogLevel::ERROR,event);};
     void Logger::fatal(LogEvent::ptr event) { log(LogLevel::FATAL,event);};
 
+
+    LogEventWarp::LogEventWarp(const LogEvent::ptr &mEvent) : m_event(mEvent) {}
+
+    const LogEvent::ptr &LogEventWarp::getMEvent() const {
+        return m_event;
+    }
+
+    stringstream& LogEventWarp::getSS() {
+        return m_event->getMSs();
+    }
+
+    void LogEvent::format(const char *fmt, ...) {
+        va_list al;
+        va_start(al,fmt);
+        format(fmt,al);
+        va_end(al);
+    }
+
+    void LogEvent::format(const char *fmt, va_list al) {
+        char *buf = nullptr;
+        int len = vasprintf(&buf,fmt,al);
+        if ( len != -1){
+            m_ss << string(buf,len);
+            free(buf);
+        }
+    }
+
+    LogLevel::Level LogEvent::getMLevel() const {
+        return m_level;
+    }
 
 }

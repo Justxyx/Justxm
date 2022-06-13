@@ -13,6 +13,7 @@
 #include "../util/Util.h"
 using namespace std;
 
+
 namespace xm{
 
     class Logger;
@@ -51,11 +52,17 @@ public:
     const char *getMFile() const {return m_file;}
     int32_t getMLine() const {return m_line;}
 
+    stringstream &getMSs();
+
+    void format(const char *fmt, ...);
+    void format(const char *fmt,va_list al);
+
     LogEvent(std::shared_ptr<Logger> logger, LogLevel::Level level
             ,const char* file, int32_t line, uint32_t elapse
             ,uint32_t thread_id, uint32_t fiber_id, uint64_t time
             ,const std::string& thread_name);
 
+    LogLevel::Level getMLevel() const;
 
 private:
     const char* m_file = nullptr;
@@ -74,6 +81,15 @@ private:
  * 包装的日志类
  */
 class LogEventWarp{
+public:
+    LogEventWarp(const LogEvent::ptr &mEvent);
+
+    ~LogEventWarp();
+
+    const LogEvent::ptr &getMEvent() const;
+
+    stringstream& getSS();
+
 private:
     LogEvent::ptr m_event;
 };
@@ -214,6 +230,8 @@ private:
     LogFormatter::ptr m_formatter;  // 默认foramtter
     Logger::ptr m_root;
 };
+
+
 
 
 }
