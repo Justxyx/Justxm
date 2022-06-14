@@ -11,18 +11,24 @@
 #include <fstream>
 #include <vector>
 #include "../util/Util.h"
+#include <map>
+#include "../util/Singleton.h"
 using namespace std;
 
 
 namespace xm{
 
     class Logger;
+    class LoggerManager;
 
+/*
+ * 宏 一
+ */
 #define XM_LOG_LEVEL(logger,level) \
        if  (logger->getMLevel() <= level) \
     xm::LogEventWarp(xm::LogEvent::ptr(new xm::LogEvent(logger,level, \
                                                         __FILE__,__LINE__,0,xm::GetThreadId(),xm::GetFiberId(), \
-                                                        time(0),"thread name"))).getSS(); \
+                                                        time(0),"thread name"))).getSS() \
 
 #define XM_LOG_DEBUG(logger) \
     XM_LOG_LEVEL(logger,xm::LogLevel::DEBUG) \
@@ -40,6 +46,14 @@ namespace xm{
 
 #define XM_LOG_FATAL(logger) \
     XM_LOG_LEVEL(logger,xm::LogLevel::FATAL) \
+
+/*
+ * 宏 二  获取主日志器
+ */
+#define XM_LOG_ROOT() xm::LoggerMgr::GetInstance()->getMRoot();
+
+#define XM_LOG_NAME(name) xm::LoggerMgr::GetInstance()->getLogger(name);
+
 
 
     /*
@@ -221,6 +235,7 @@ private:
  */
 class Logger : public enable_shared_from_this<Logger>{
 public:
+    friend class LoggerManager;
     typedef shared_ptr<Logger> ptr;
 
     Logger(const string &name = "root");  // 构造
@@ -256,8 +271,20 @@ private:
     Logger::ptr m_root;
 };
 
+class LoggerManager {
+public:
+    LoggerManager();
+    Logger::ptr getLogger(const string &name);
+    void init();
 
+    const Logger::ptr &getMRoot() const;
 
+private:
+    map<string, Logger::ptr> m_loggers;
+    Logger::ptr m_root;
+};
+
+typedef xm::Singleton<LoggerManager> LoggerMgr;
 
 }
 #endif //JUSTXM_LOG_H

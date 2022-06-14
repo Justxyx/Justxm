@@ -51,5 +51,13 @@ namespace logTest {
         XM_LOG_DEBUG(logger);
         XM_LOG_INFO(logger);
     }
+
+    // 单例模式测试
+    void test06(){
+        xm::Logger::ptr logger = XM_LOG_ROOT();
+        logger->addAppender(xm::LogAppender::ptr(new xm::FileLogAppender(
+                "/Users/xiaoyingxiong/projects/ClionProjects/Justxm/a.txt")));
+        XM_LOG_DEBUG( logger ) << "测试一下中文是否ok";
+    }
 }
 #endif //JUSTXM_LOGTEST_H

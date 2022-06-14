@@ -373,4 +373,29 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
         return m_level;
     }
 
+    const Logger::ptr &LoggerManager::getMRoot() const {
+        return m_root;
+    }
+
+    LoggerManager::LoggerManager() {
+        m_root.reset(new Logger);
+        m_root->addAppender(LogAppender::ptr(new StdoutLogAppender));
+        m_loggers[m_root->getMName()] = m_root;
+        init();
+    }
+
+    void LoggerManager::init() {
+    }
+
+    Logger::ptr LoggerManager::getLogger(const string &name) {
+        auto p = m_loggers.find(name);
+        if (p != m_loggers.end()){
+            return p->second;
+        }
+
+        Logger::ptr logger(new Logger(name));
+        logger->m_root = m_root;
+        m_loggers[name] = logger;
+        return logger;
+    }
 }
