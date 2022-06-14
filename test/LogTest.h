@@ -35,10 +35,21 @@ namespace logTest {
         xm::LogEvent::ptr event(new xm::LogEvent(logger,xm::LogLevel::DEBUG,"zzz",12,
                                                  12,12,12,12,"xx"));
 //        logger->log(xm::LogLevel::DEBUG,event);
-        if (event->getMSs())
-            cout << "he";
 
-        xm::LogEventWarp lo(event);
+//        xm::LogEventWarp lo(event);
+        xm::LogEventWarp(xm::LogEvent::ptr(new xm::LogEvent(logger,xm::LogLevel::DEBUG,
+                                                            __FILE__,__LINE__,0,xm::GetThreadId(),xm::GetFiberId(),
+                                                            time(0),"thread name"))).getSS();
+    }
+
+    // 日志宏测试
+    void test05(){
+        xm::Logger::ptr logger(new xm::Logger);
+        logger->addAppender(xm::LogAppender::ptr(new xm::StdoutLogAppender));
+        XM_LOG_LEVEL(logger, xm::LogLevel::DEBUG);
+//        logger->getMLevel();
+        XM_LOG_DEBUG(logger);
+        XM_LOG_INFO(logger);
     }
 }
 #endif //JUSTXM_LOGTEST_H

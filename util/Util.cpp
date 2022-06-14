@@ -71,4 +71,11 @@ namespace xm {
         return false;
     }
 
+    pid_t xm::GetThreadId() {
+        return 1;
+    }
+
+    uint32_t xm::GetFiberId() {
+        return 1;
+    }
 }

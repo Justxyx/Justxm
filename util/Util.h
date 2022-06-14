@@ -29,5 +29,8 @@ namespace xm {
         static bool Mkdir(const string &dirname);
     };
 
+    pid_t GetThreadId();
+
+    uint32_t GetFiberId();
 }
 #endif //JUSTXM_UTIL_H

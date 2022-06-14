@@ -18,7 +18,31 @@ namespace xm{
 
     class Logger;
 
-/*
+#define XM_LOG_LEVEL(logger,level) \
+       if  (logger->getMLevel() <= level) \
+    xm::LogEventWarp(xm::LogEvent::ptr(new xm::LogEvent(logger,level, \
+                                                        __FILE__,__LINE__,0,xm::GetThreadId(),xm::GetFiberId(), \
+                                                        time(0),"thread name"))).getSS(); \
+
+#define XM_LOG_DEBUG(logger) \
+    XM_LOG_LEVEL(logger,xm::LogLevel::DEBUG) \
+
+
+#define XM_LOG_INFO(logger) \
+    XM_LOG_LEVEL(logger,xm::LogLevel::INFO) \
+
+
+#define XM_LOG_WARN(logger) \
+    XM_LOG_LEVEL(logger,xm::LogLevel::WARN) \
+
+#define XM_LOG_ERROR(logger) \
+    XM_LOG_LEVEL(logger,xm::LogLevel::ERROR) \
+
+#define XM_LOG_FATAL(logger) \
+    XM_LOG_LEVEL(logger,xm::LogLevel::FATAL) \
+
+
+    /*
  * 日志等级
  */
 class LogLevel{
@@ -221,6 +245,7 @@ public:
     void setFormatter(LogFormatter::ptr formatter); // Formatter
     void setFormatter(const string &formatter);
     const LogFormatter::ptr getFormatter ()const;
+
 
 
 private:
