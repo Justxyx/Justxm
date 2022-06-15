@@ -67,6 +67,17 @@ namespace xm{
                                                         __FILE__,__LINE__,0,xm::GetThreadId(),xm::GetFiberId(), \
                                                         time(0),"thread name"))).getSS() \
 
+/*
+ * 宏 四
+ * 日志等级
+ */
+
+#define UNKNOW()  xm::LogLevel::UNKNOW
+#define DEBUG()  xm::LogLevel::DEBUG
+#define INFO()  xm::LogLevel::INFO
+#define WARN()  xm::LogLevel::WARN
+#define ERROR()  xm::LogLevel::ERROR
+#define FATAL()  xm::LogLevel::FATAL
 
 
     /*
