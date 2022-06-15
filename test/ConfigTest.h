@@ -14,6 +14,7 @@ void test01(){
     cout << config->toString();
     config->fromString("123");
     cout << config->getMVal() << endl;
+    ROOT_LOG_DEBUG(xm::LogLevel::DEBUG) << "hey" << endl;
 }
 
 
