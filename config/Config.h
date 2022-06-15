@@ -46,8 +46,7 @@ namespace xm {
             try {
                 return ToStr()(m_val);
             }catch (exception e){
-                xm::Logger::ptr logger = XM_LOG_ROOT();
-                XM_LOG_DEBUG(logger) << "ConfigVar::ToString exception: " << e.what() << endl;
+                ROOT_LOG_DEBUG(LogLevel::DEBUG)<< "ConfigVar::ToString exception: " << e.what() << endl;
             }
             return "";
         }
@@ -57,14 +56,42 @@ namespace xm {
                 setMVal(FromStr()(val));
                 return true;
             }catch (exception e) {
-                xm::Logger::ptr logger = XM_LOG_ROOT();
-                XM_LOG_DEBUG(logger) << "ConfigVar::FromStr exeception: " << e.what() << endl;
+                ROOT_LOG_DEBUG(LogLevel::DEBUG) << "ConfigVar::FromStr exeception: " << e.what() << endl;
             }
             return false;
         }
 
     private:
         T m_val;
+    };
+
+    class Config{
+    public:
+        typedef map<string,ConfigVArBase::ptr> ConfigVarMap;
+
+        template<class T>
+        static typename ConfigVar<T>::ptr Lookup(const string &name,
+                                                 const T &default_value,
+                                                 const string &description = ""){
+            auto it = GetDatas().find(name);
+            if (it != GetDatas().end()) {
+                auto temp = dynamic_pointer_cast<ConfigVar<T>>(it->second);
+                if (!temp) {
+                    ROOT_LOG_DEBUG(LogLevel::INFO) << "trans error " << endl;
+                    return nullptr;
+                }
+                if (temp) {
+                    ROOT_LOG_DEBUG(LogLevel::INFO) << "Lookup name = " << name << "exists" << endl;
+                    return temp;
+                }
+            }
+        }
+
+    private:
+        static ConfigVarMap& GetDatas(){
+            static ConfigVarMap s_datas;
+            return s_datas;
+        }
     };
 
 }
