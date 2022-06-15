@@ -55,6 +55,18 @@ namespace xm{
 #define XM_LOG_NAME(name) xm::LoggerMgr::GetInstance()->getLogger(name);
 
 
+/*
+ * 宏 三
+ * 全局的root log
+ */
+
+#define ROOT_LOG_DEBUG(level) \
+        xm::Logger::ptr logger = XM_LOG_ROOT(); \
+        if  (logger -> getMLevel() <= level) \
+        xm::LogEventWarp(xm::LogEvent::ptr(new xm::LogEvent(logger,level, \
+                                                        __FILE__,__LINE__,0,xm::GetThreadId(),xm::GetFiberId(), \
+                                                        time(0),"thread name"))).getSS() \
+
 
 
     /*
