@@ -17,6 +17,24 @@ void test01(){
     cout << config->getMVal() << endl;
 }
 
+// Yaml 测试
+void test02(){
+    xm::ConfigVar<int>::ptr s = xm::Config::Lookup("system.port",8888);
+    cout << s->getMName() << ":" << s->getMVal() << endl;
+    YAML::Node root = YAML::LoadFile("/Users/xiaoyingxiong/projects/ClionProjects/Justxm/test.yaml");
+    xm::Config::LoadFromYaml(root);
+    cout << s->getMName() << ":" << s->getMVal() << endl;
+}
+
+// 支持复杂类型
+void test03(){
+        xm::ConfigVar<vector<int>>::ptr s = xm::Config::Lookup("system.port",
+                                                               vector<int>{1,1,1,1,1});
+        cout << s->getMName() << ":" <<  s->toString()<< endl;
+        YAML::Node root = YAML::LoadFile("/Users/xiaoyingxiong/projects/ClionProjects/Justxm/test.yaml");
+        xm::Config::LoadFromYaml(root);
+        cout << s->getMName() << ":" << s->toString() << endl;
+}
 
 
 

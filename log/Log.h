@@ -60,7 +60,7 @@ namespace xm{
  * 全局的root log
  */
 
-#define ROOT_LOG_DEBUG(level) \
+#define ROOT_LOG(level) \
         xm::Logger::ptr logger = XM_LOG_ROOT(); \
         if  (logger -> getMLevel() <= level) \
         xm::LogEventWarp(xm::LogEvent::ptr(new xm::LogEvent(logger,level, \

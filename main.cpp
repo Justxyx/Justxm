@@ -11,7 +11,9 @@ int main() {
 }
 
 void forConfigTest(){
-    ConfigTest::test01();
+//    ConfigTest::test01();
+//    ConfigTest::test02();
+    ConfigTest::test03();
 }
 
 void forLogTest(){

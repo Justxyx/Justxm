@@ -10,6 +10,7 @@ using namespace std;
 #include <boost/lexical_cast.hpp>
 #include "Specialization.h"
 #include "../log/Log.h"
+#include <yaml-cpp/yaml.h>
 namespace xm {
 
     class ConfigVArBase {
@@ -46,7 +47,7 @@ namespace xm {
             try {
                 return ToStr()(m_val);
             }catch (exception e){
-                ROOT_LOG_DEBUG(LogLevel::DEBUG)<< "ConfigVar::ToString exception: " << e.what() << endl;
+                ROOT_LOG(LogLevel::DEBUG)<< "ConfigVar::ToString exception: " << e.what() << endl;
             }
             return "";
         }
@@ -56,7 +57,7 @@ namespace xm {
                 setMVal(FromStr()(val));
                 return true;
             }catch (exception e) {
-                ROOT_LOG_DEBUG(LogLevel::DEBUG) << "ConfigVar::FromStr exeception: " << e.what() << endl;
+                ROOT_LOG(LogLevel::DEBUG) << "ConfigVar::FromStr exeception: " << e.what() << endl;
             }
             return false;
         }
@@ -73,20 +74,31 @@ namespace xm {
         static typename ConfigVar<T>::ptr Lookup(const string &name,
                                                  const T &default_value,
                                                  const string &description = ""){
+            // 名字存在 但是类型不同 会报错返空值
             auto it = GetDatas().find(name);
             if (it != GetDatas().end()) {
                 auto temp = dynamic_pointer_cast<ConfigVar<T>>(it->second);
                 if (!temp) {
-                    ROOT_LOG_DEBUG(LogLevel::INFO) << "trans error " << endl;
+                    ROOT_LOG(INFO()) << "trans error " << endl;
                     return nullptr;
                 }
                 if (temp) {
-                    ROOT_LOG_DEBUG(LogLevel::INFO) << "Lookup name = " << name << "exists" << endl;
+                    ROOT_LOG(INFO()) << "Lookup name = " << name << "exists" << endl;
                     return temp;
                 }
             }
+            if (name.find_first_not_of("abcdefghjiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._123456789")
+                                        != string::npos) {
+                ROOT_LOG(INFO()) << "Lookup name is invalid" << name << endl;
+                throw invalid_argument(name);
+            }
+            typename ConfigVar<T>::ptr v(new ConfigVar<T>(name,description,default_value));
+            GetDatas()[name] = v;
+            return v;
         }
 
+        static void LoadFromYaml(const YAML::Node &root);
+        static ConfigVArBase::ptr LookUpBase(const string &name);
     private:
         static ConfigVarMap& GetDatas(){
             static ConfigVarMap s_datas;

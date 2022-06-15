@@ -1,0 +1,19 @@
+#logs:
+#  - name: root
+#    level: info
+#    appender:
+#      - appender_a
+#      - appender_b
+#  - name: xm
+#    level: debug
+#    appender:
+#      - appender_a
+#      - appender_b
+
+system:
+  port:
+    - 1
+    - 2
+    - 3
+    - 4
+  host: 127.0.0.1
