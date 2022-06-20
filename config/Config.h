@@ -11,6 +11,7 @@ using namespace std;
 #include "Specialization.h"
 #include "../log/Log.h"
 #include <yaml-cpp/yaml.h>
+#include <functional>
 namespace xm {
 
     class ConfigVArBase {
@@ -36,12 +37,20 @@ namespace xm {
     class ConfigVar: public ConfigVArBase {
     public:
         typedef shared_ptr<ConfigVar> ptr;
+        typedef function<void(const T& old_value, const T& new_value)> on_change_cb;  // 定义一个回调函数  c11新特性
 
         ConfigVar(const string &mName, const string &mDescription, T mVal) : ConfigVArBase(mName, mDescription),
                                                                              m_val(mVal) {}
 
         T getMVal() const {return m_val;}
-        void setMVal(T mVal) {m_val = mVal;}
+        void setMVal(T mVal) {
+            if (mVal == m_val)
+                return;
+            for (const auto &item : m_cbs) {
+                item.second(m_val,mVal);
+            }
+            m_val = mVal;
+        }
 
         string toString() override {
             try {
@@ -62,8 +71,21 @@ namespace xm {
             return false;
         }
 
+        void addListener(uint64_t key ,on_change_cb cb) {
+            m_cbs[key] = cb;
+        }
+        void delListener(uint64_t key){
+            m_cbs.erase(key);
+        }
+        on_change_cb getListener(uint64_t key){
+            auto p = m_cbs.find(key);
+            return p == m_cbs.end() ? nullptr : p->second;
+        }
+
     private:
         T m_val;
+        // 回调函数数组
+        map<uint64_t, on_change_cb> m_cbs;
     };
 
     class Config{
