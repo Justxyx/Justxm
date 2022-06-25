@@ -8,32 +8,34 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/tmp/tmp.5JjapbKvxd/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.pmVU7T7KRe/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/tmp/tmp.5JjapbKvxd/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.pmVU7T7KRe/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="justxm">
-				<Option output="/tmp/tmp.5JjapbKvxd/cmake-build-debug/justxm" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/tmp/tmp.5JjapbKvxd/cmake-build-debug"/>
+				<Option output="/tmp/tmp.pmVU7T7KRe/cmake-build-debug/justxm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.pmVU7T7KRe/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/xiaoyingxiong/install/boost/boost_1_76_0"/>
+					<Add directory="/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -44,19 +46,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 justxm"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 justxm"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="justxm/fast">
-				<Option output="/tmp/tmp.5JjapbKvxd/cmake-build-debug/justxm" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/tmp/tmp.5JjapbKvxd/cmake-build-debug"/>
+				<Option output="/tmp/tmp.pmVU7T7KRe/cmake-build-debug/justxm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.pmVU7T7KRe/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Users/xiaoyingxiong/install/boost/boost_1_76_0"/>
+					<Add directory="/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/include"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -67,27 +71,66 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 justxm/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 justxm/fast"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/tmp/tmp.5JjapbKvxd/cmake-build-debug"/>
+				<Option working_dir="/tmp/tmp.pmVU7T7KRe/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/tmp/tmp.5JjapbKvxd/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j6 -f &quot;/tmp/tmp.pmVU7T7KRe/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/tmp/tmp.5JjapbKvxd/main.cpp">
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/config/Config.cpp">
 			<Option target="justxm"/>
 		</Unit>
-		<Unit filename="/tmp/tmp.5JjapbKvxd/CMakeLists.txt">
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/config/Config.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/config/Specialization.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/log/FormatItem.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/log/Log.cpp">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/log/Log.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/main.cpp">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/test/ConfigTest.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/test/LogTest.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/thread/Thread.cpp">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/thread/Thread.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/util/Singleton.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/util/Util.cpp">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/util/Util.h">
+			<Option target="justxm"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.pmVU7T7KRe/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

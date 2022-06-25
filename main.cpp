@@ -2,12 +2,20 @@
 #include "log/Log.h"
 #include "test/LogTest.h"
 #include "test/ConfigTest.h"
+#include "test/Thread.h"
+#include <pthread.h>
 
 void forLogTest();
 void forConfigTest();
+void forThreadTest();
 int main() {
 //    forLogTest();
-    forConfigTest();
+//    forConfigTest();
+    forThreadTest();
+}
+
+void forThreadTest(){
+    threadTest::test01();
 }
 
 void forConfigTest(){
@@ -15,7 +23,7 @@ void forConfigTest(){
 //    ConfigTest::test02();
 //    ConfigTest::test03();
 //    ConfigTest::test04();
-    ConfigTest::test05();
+//    ConfigTest::test05();
 }
 
 void forLogTest(){
