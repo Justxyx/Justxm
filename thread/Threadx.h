@@ -9,6 +9,7 @@
 #include <functional>
 #include <memory>
 #include <pthread.h>
+#include "Mutex.h"
 using namespace std;
 
 namespace xm {
@@ -29,6 +30,8 @@ public:
     static const string& getName();
     // 设置当前线程名字
     static void setName(const string &name);
+    // 获得当前线程编号
+    static const pid_t getPid();
 
     // 线程执行函数
     static void *run(void *arg);
@@ -43,6 +46,7 @@ private:
     // 线程名称
     string m_name;
 
+    Semaphore m_sem;
 };
 
 }

@@ -5,6 +5,9 @@
 #include "Log.h"
 #include "map"
 #include "FormatItem.h"
+#include <functional>
+#include <stdio.h>
+#include <stdarg.h>
 namespace xm{
 
 

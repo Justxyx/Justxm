@@ -22,7 +22,8 @@ namespace xm {
 
     class FSUtil {
     public:
-        static bool OpenForWrite(ofstream &ofs, const string filename, ios_base::open_mode mode);
+        static bool OpenForWrite(std::ofstream& ofs, const std::string& filename
+                ,std::ios_base::openmode mode);
 
         static string Dirname(const string &filename);
 
@@ -32,5 +33,7 @@ namespace xm {
     pid_t GetThreadId();
 
     uint32_t GetFiberId();
+
+
 }
 #endif //JUSTXM_UTIL_H

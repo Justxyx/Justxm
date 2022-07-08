@@ -4,16 +4,20 @@
 
 #include "Util.h"
 
+#include <sys/syscall.h>
 namespace xm {
 
-    bool FSUtil::OpenForWrite(ofstream &ofs, const string filename, ios_base::open_mode mode) {
+    bool FSUtil::OpenForWrite(std::ofstream& ofs, const std::string& filename
+            ,std::ios_base::openmode mode) {
         ofs.open(filename.c_str(), mode);
-        if (!ofs.is_open()) {    // 若不存在文件夹 则创建新的文件夹
-            string dir = Dirname(filename);
+        if(!ofs.is_open()) {
+            std::string dir = Dirname(filename);
             Mkdir(dir);
+            ofs.open(filename.c_str(), mode);
         }
         return ofs.is_open();
     }
+
 
     string FSUtil::Dirname(const string &filename) {
         if (filename.empty()) {
@@ -72,7 +76,7 @@ namespace xm {
     }
 
     pid_t GetThreadId() {
-        return 1;
+        return syscall(SYS_gettid);
     }
 
     uint32_t GetFiberId() {

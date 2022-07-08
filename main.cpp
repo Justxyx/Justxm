@@ -15,7 +15,10 @@ int main() {
 }
 
 void forThreadTest(){
-    threadTest::test01();
+    threadTest::test05();
+//    threadTest::test03();
+//    threadTest::test01();
+//    threadTest::test02();
 }
 
 void forConfigTest(){

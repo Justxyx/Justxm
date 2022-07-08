@@ -4,11 +4,11 @@
 
 #include "Threadx.h"
 #include "../log/Log.h"
+
 namespace xm {
 
     static thread_local Threadx *t_thread = nullptr;
     static thread_local string t_thread_name = "UNKNOW";
-
 
     Threadx *Threadx::getThis() {
         return t_thread;
@@ -18,6 +18,9 @@ namespace xm {
         return t_thread_name;
     }
 
+    const pid_t Threadx::getPid() {
+        return t_thread->m_id;
+    }
     void Threadx::setName(const string &name) {
         if (name.empty())
             return;
@@ -31,11 +34,13 @@ namespace xm {
     {
         if (name.empty())
             m_name = "UNKNOW";
-        int rt = pthread_create(&m_thread, nullptr, &Threadx::run, this);
+        int rt = pthread_create(&m_thread, nullptr,
+                                &Threadx::run, this);
         if (rt) {
             ROOT_LOG(LogLevel::ERROR) << "pthread_create thread error" <<
                 "name = " << name << endl;
         }
+        m_sem.wait();
     }
 
     Threadx::~Threadx() {
@@ -44,6 +49,7 @@ namespace xm {
         }
     }
 
+    // 调用这个其实还是主线程调用的
     void Threadx::join() {
         if (m_thread) {
             int rt = pthread_join(m_thread, nullptr);
@@ -55,16 +61,17 @@ namespace xm {
         }
     }
 
+    // 只有run 才是真正的跑到线程里面去了  好好理解一下这句话
     void *Threadx::run(void *arg) {
         Threadx *thread = (Threadx*)arg;
         t_thread = thread;
         t_thread_name = thread->m_name;
-        thread->m_id = 1111;
-
+        t_thread->m_id = xm::GetThreadId();
         function<void()> cb;
         cb.swap(thread->m_cb);
 
         cb();
+        thread->m_sem.notify();
         return 0;
     }
 

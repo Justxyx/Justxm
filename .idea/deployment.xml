@@ -12,6 +12,16 @@
           </excludedPaths>
         </serverdata>
       </paths>
+      <paths name="Remote Host (64e51865-799a-47bd-8041-43de6ac990d9)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.in82CwMLnp" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
       <paths name="Remote Host (eb5f96d8-4c3a-4018-a078-10f4d8d2f691)">
         <serverdata>
           <mappings>

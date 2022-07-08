@@ -27,37 +27,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 16,
+				"line" : 21,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
-				"file" : 0,
-				"line" : 10,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 14,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
 				"file" : 0,
 				"line" : 19,
 				"parent" : 0
 			},
 			{
-				"command" : 3,
+				"command" : 2,
 				"file" : 0,
-				"line" : 8,
+				"line" : 25,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 13,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 18,
 				"parent" : 0
 			}
 		]
@@ -77,11 +71,11 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 5,
-					"path" : "/Users/xiaoyingxiong/install/boost/boost_1_76_0"
+					"backtrace" : 4,
+					"path" : "/home/xm/C++/yaml-cpp/yaml-cpp/include/yaml-cpp"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 5,
 					"path" : "/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/include"
 				}
 			],
@@ -100,7 +94,8 @@
 				1,
 				5,
 				8,
-				12
+				12,
+				16
 			]
 		}
 	],
@@ -119,21 +114,21 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-L/Users/xiaoyingxiong/install/boost/boost_1_76_0/stage/lib",
-				"role" : "libraryPath"
-			},
-			{
-				"backtrace" : 3,
 				"fragment" : "-L/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/lib",
 				"role" : "libraryPath"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/Users/xiaoyingxiong/install/boost/boost_1_76_0/stage/lib -Wl,-rpath,/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/lib",
+				"fragment" : "-Wl,-rpath,/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
-				"fragment" : "-lyaml-cpp",
+				"backtrace" : 3,
+				"fragment" : "/home/xm/C++/yaml-cpp/yaml-cpp/build/libyaml-cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lpthread",
 				"role" : "libraries"
 			}
 		],
@@ -156,7 +151,8 @@
 				1,
 				5,
 				8,
-				12
+				12,
+				16
 			]
 		},
 		{
@@ -172,7 +168,9 @@
 				10,
 				11,
 				13,
-				14
+				14,
+				15,
+				17
 			]
 		}
 	],
@@ -256,6 +254,22 @@
 		{
 			"backtrace" : 1,
 			"path" : "test/Thread.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "util/Noncopyable.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "thread/Mutex.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "thread/Mutex.h",
 			"sourceGroupIndex" : 1
 		}
 	],
