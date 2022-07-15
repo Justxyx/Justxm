@@ -123,6 +123,33 @@ justxm/fast:
 	$(MAKE) -f CMakeFiles/justxm.dir/build.make CMakeFiles/justxm.dir/build
 .PHONY : justxm/fast
 
+Fiber/Fiber.o: Fiber/Fiber.cpp.o
+
+.PHONY : Fiber/Fiber.o
+
+# target to build an object file
+Fiber/Fiber.cpp.o:
+	$(MAKE) -f CMakeFiles/justxm.dir/build.make CMakeFiles/justxm.dir/Fiber/Fiber.cpp.o
+.PHONY : Fiber/Fiber.cpp.o
+
+Fiber/Fiber.i: Fiber/Fiber.cpp.i
+
+.PHONY : Fiber/Fiber.i
+
+# target to preprocess a source file
+Fiber/Fiber.cpp.i:
+	$(MAKE) -f CMakeFiles/justxm.dir/build.make CMakeFiles/justxm.dir/Fiber/Fiber.cpp.i
+.PHONY : Fiber/Fiber.cpp.i
+
+Fiber/Fiber.s: Fiber/Fiber.cpp.s
+
+.PHONY : Fiber/Fiber.s
+
+# target to generate assembly for a file
+Fiber/Fiber.cpp.s:
+	$(MAKE) -f CMakeFiles/justxm.dir/build.make CMakeFiles/justxm.dir/Fiber/Fiber.cpp.s
+.PHONY : Fiber/Fiber.cpp.s
+
 config/Config.o: config/Config.cpp.o
 
 .PHONY : config/Config.o
@@ -294,6 +321,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... justxm"
 	@echo "... edit_cache"
+	@echo "... Fiber/Fiber.o"
+	@echo "... Fiber/Fiber.i"
+	@echo "... Fiber/Fiber.s"
 	@echo "... config/Config.o"
 	@echo "... config/Config.i"
 	@echo "... config/Config.s"

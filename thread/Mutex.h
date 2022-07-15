@@ -116,6 +116,7 @@ namespace xm {
     // 互斥锁
     class Mutex : public Noncopyable {
     public:
+        typedef ScopedLockImpl<Mutex> Lock;
         Mutex() {
             pthread_mutex_init(&m_mutex, nullptr);
         }

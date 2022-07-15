@@ -47,17 +47,21 @@ namespace threadTest {
 
     int volatile count = 0;
     xm::RWMutex s_mutex;
+    xm::Mutex mutex;
     void method3() {
+        for (int i = 0; i < 10; ++i) {
+//            xm::RWMutex::WriteLock lock(s_mutex);
+//            cout << "-.-" << endl;
+            xm::Mutex::Lock  lock(mutex);
+//            sleep(1);
+            ++count;
+        }
         cout << "name:"
              << xm::Threadx::getName()
              << ":"
              << xm::Threadx::getPid()
+             << "count:" << count
              << endl;
-        for (int i = 0; i < 100000; ++i) {
-//            xm::RWMutex::WriteLock lock(s_mutex);
-//            cout << "-.-" << endl;
-            ++count;
-        }
     }
     void test03() {
         vector<xm::Threadx::ptr> thrs;
@@ -71,7 +75,7 @@ namespace threadTest {
 
     void test05() {
         vector<xm::Threadx::ptr> thrs;
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 10; ++i) {
             xm::Threadx::ptr thr(new xm::Threadx(&method3, "name_"+ to_string(i)));
             thrs.push_back(thr);
         }

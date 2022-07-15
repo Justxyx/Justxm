@@ -4,14 +4,29 @@
 #include "test/ConfigTest.h"
 #include "test/Thread.h"
 #include <pthread.h>
-
+#include "test/UcontextTest.h"
+#include "test/FiberTest.h"
 void forLogTest();
 void forConfigTest();
 void forThreadTest();
+void forUcontextTest();
+void forFiberTest();
 int main() {
 //    forLogTest();
 //    forConfigTest();
-    forThreadTest();
+//    forThreadTest();
+//    forUcontextTest();
+//    cout << "hello word" << endl;
+    forFiberTest();
+}
+
+void forFiberTest() {
+    FiberTest::test01();
+}
+
+void forUcontextTest() {
+//    test01();
+    test02();
 }
 
 void forThreadTest(){

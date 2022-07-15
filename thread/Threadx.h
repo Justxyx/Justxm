@@ -45,7 +45,7 @@ private:
     function<void()> m_cb;
     // 线程名称
     string m_name;
-
+    // 信号量
     Semaphore m_sem;
 };
 

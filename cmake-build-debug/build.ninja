@@ -126,6 +126,15 @@ build CMakeFiles/justxm.dir/thread/Mutex.cpp.o: CXX_COMPILER__justxm_Debug /User
   TARGET_COMPILE_PDB = CMakeFiles/justxm.dir/
   TARGET_PDB = justxm.pdb
 
+build CMakeFiles/justxm.dir/Fiber/Fiber.cpp.o: CXX_COMPILER__justxm_Debug /Users/xiaoyingxiong/projects/ClionProjects/Justxm/Fiber/Fiber.cpp || cmake_object_order_depends_target_justxm
+  DEP_FILE = CMakeFiles/justxm.dir/Fiber/Fiber.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk -std=gnu++11
+  INCLUDES = -I/home/xm/C++/yaml-cpp/yaml-cpp/include/yaml-cpp -I/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/include
+  OBJECT_DIR = CMakeFiles/justxm.dir
+  OBJECT_FILE_DIR = CMakeFiles/justxm.dir/Fiber
+  TARGET_COMPILE_PDB = CMakeFiles/justxm.dir/
+  TARGET_PDB = justxm.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target justxm
@@ -134,7 +143,7 @@ build CMakeFiles/justxm.dir/thread/Mutex.cpp.o: CXX_COMPILER__justxm_Debug /User
 #############################################
 # Link the executable justxm
 
-build justxm: CXX_EXECUTABLE_LINKER__justxm_Debug CMakeFiles/justxm.dir/main.cpp.o CMakeFiles/justxm.dir/log/Log.cpp.o CMakeFiles/justxm.dir/util/Util.cpp.o CMakeFiles/justxm.dir/config/Config.cpp.o CMakeFiles/justxm.dir/thread/Threadx.cpp.o CMakeFiles/justxm.dir/thread/Mutex.cpp.o | /home/xm/C++/yaml-cpp/yaml-cpp/build/libyaml-cpp.so
+build justxm: CXX_EXECUTABLE_LINKER__justxm_Debug CMakeFiles/justxm.dir/main.cpp.o CMakeFiles/justxm.dir/log/Log.cpp.o CMakeFiles/justxm.dir/util/Util.cpp.o CMakeFiles/justxm.dir/config/Config.cpp.o CMakeFiles/justxm.dir/thread/Threadx.cpp.o CMakeFiles/justxm.dir/thread/Mutex.cpp.o CMakeFiles/justxm.dir/Fiber/Fiber.cpp.o | /home/xm/C++/yaml-cpp/yaml-cpp/build/libyaml-cpp.so
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.0.sdk
   LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/lib  /home/xm/C++/yaml-cpp/yaml-cpp/build/libyaml-cpp.so  -lpthread
   LINK_PATH = -L/opt/homebrew/Cellar/yaml-cpp/0.6.3_1/lib

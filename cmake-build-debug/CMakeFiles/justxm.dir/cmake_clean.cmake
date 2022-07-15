@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/justxm.dir/config/Config.cpp.o"
   "CMakeFiles/justxm.dir/thread/Threadx.cpp.o"
   "CMakeFiles/justxm.dir/thread/Mutex.cpp.o"
+  "CMakeFiles/justxm.dir/Fiber/Fiber.cpp.o"
   "justxm.pdb"
   "justxm"
 )
