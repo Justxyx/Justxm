@@ -174,7 +174,8 @@
 				15,
 				17,
 				18,
-				20
+				20,
+				21
 			]
 		}
 	],
@@ -290,6 +291,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "Fiber/Fiber.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "test/FiberTest.h",
 			"sourceGroupIndex" : 1
 		}
 	],

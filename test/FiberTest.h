@@ -18,7 +18,7 @@ namespace FiberTest {
     void test01() {
         xm::Fiber::GetThis();
         cout << "begin" << endl;
-        xm::Fiber::ptr fiber(new xm::Fiber(m1));
+        xm::Fiber::ptr fiber(new xm::Fiber(m1, 1024, true));
         fiber->getId();
         fiber->swapIn();
         cout << "main after swapin" << endl;

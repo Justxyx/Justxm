@@ -31,7 +31,7 @@ namespace xm {
          */
         Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
         ~Fiber();
-        void reset(std::function<void()> cb);  // 重置协程的运行函数
+        void reset(std::function<void()> cb);  // 重置协程的运行函数 并重置状态
         void swapIn();  // 将当前协程切换到运行状态
         void swapOut(); // 将当前协程切换到后台
         void call();  // 将当前协程切换到执行状态  执行前为当前线程的主线程
@@ -40,12 +40,12 @@ namespace xm {
         State getState() const {return m_state;}  // 返回状态
     public:
         static void SetThis(Fiber *f);  // 设置当前线程的运行的协程
-        static Fiber::ptr GetThis();   // 返回当前所在协程
-        static void YieldToReady();    // 将当前线程切换到后台 并设置为ready 状态
+        static Fiber::ptr GetThis();   // 返回当前所在协程  拿到当前协程
+        static void YieldToReady();    // 将当前线程切换到后台 并设置为ready 状态  让出当前协程
         static void YieldToHold();     // 将当前线程切换到后台 并设置为HOLD状态
-        static uint64_t TotalFibers();
+        static uint64_t TotalFibers();   // 总协程数
         static void MainFunc();    // 协程执行函数 执行完返回到线程的主协程
-        static void CalleMainFunc();  // 协程执行函数 执行完返回到线程调度协程
+        static void CalleMainFunc();  // 协程执行函数 执行完返回到线程调度协程  1
         static uint64_t GetFiberId();    // 返回当前协程id
     private:
         uint64_t m_id = 0;  // 协程id
